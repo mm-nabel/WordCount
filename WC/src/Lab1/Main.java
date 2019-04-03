@@ -1,4 +1,4 @@
-package pack;
+package Lab1;
 
 import java.io.FileNotFoundException;
 

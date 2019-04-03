@@ -1,4 +1,4 @@
-package pack;
+package Lab2_B;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,7 +17,9 @@ public class Mapper {
 		List<String> words1ist = Arrays.asList(records.split(" |-|,|\"|\\."));
 		
 		List<KeyValue> keyValueList = words1ist.stream().filter(e -> !(e.equals("") || e.matches(".*\\d+.*") || e.matches(".*_.*")))
-				.map(e -> new KeyValue(e.toLowerCase(), 1)).collect(Collectors.toList());
+				.map(e -> new KeyValue(e.toLowerCase(), 1))
+				//.sorted()
+				.collect(Collectors.toList());
 
 		
 		return keyValueList;
