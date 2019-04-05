@@ -5,31 +5,42 @@ import java.util.List;
 
 public class ShuffleSort {
 
-	public List<ReducerInput> shufflingSorting(List<Lab3_2.KeyValue<String, Integer>> list) {
+	private List<ReducerInput> reducerInputList = new ArrayList();
 
-		List<ReducerInput> reducerInputList = new ArrayList();
-		int kvlngth = list.size();
+	private List<KeyValue> kv = new ArrayList();
+
+	public List<ReducerInput> shufflingSorting(List<KeyValue> mapkv) {
+		
+		if (!mapkv.isEmpty()) {
+			kv.addAll(mapkv);
+			suffling();
+			sorting();
+		}
+		return reducerInputList;
+	}
+
+	private void suffling() {
+		int kvlngth = kv.size();
 		List<String> tmpList = new ArrayList();
 		for (int i = 0; i < kvlngth; i++) {
 			ReducerInput ri = new ReducerInput<>();
-			if (tmpList.isEmpty() || !tmpList.contains(list.get(i).key.toString())) {
-				tmpList.add(list.get(i).key.toString());
-				ri.key = list.get(i).key;
+			if (tmpList.isEmpty() || !tmpList.contains(kv.get(i).key.toString())) {
+				tmpList.add(kv.get(i).key.toString());
+				ri.key = kv.get(i).key;
 				ri.val = new ArrayList();
-				ri.val.add(list.get(i).value);
+				ri.val.add(kv.get(i).value);
 				for (int j = 0; j < kvlngth; j++) {
-					if (i != j && ri.key.toString().equals(list.get(j).key)) {
-						ri.val.add(list.get(j).value);
+					if (i != j && ri.key.toString().equals(kv.get(j).key)) {
+						ri.val.add(kv.get(j).value);
 					}
 				}
 			}
-			if(ri.key != null)
+			if (ri.key != null)
 				reducerInputList.add(ri);
 		}
-		sorting(reducerInputList);
-		return reducerInputList;
 	}
-	private void sorting(List<ReducerInput> reducerInputList) {
+
+	private void sorting() {
 		ReducerInputComparator comp = new ReducerInputComparator();
 		reducerInputList.sort(comp);
 	}

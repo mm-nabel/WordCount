@@ -12,10 +12,10 @@ public class Main {
 		
 		System.out.println("\nShuffle sort Output ---> Rudecer Input");
 		ShuffleSort ss = new ShuffleSort();
-		ss.shufflingSorting(myMappaerList.mapping(filePath)).stream().forEach(System.out::println);
+		//ss.shufflingSorting(myMappaerList.mapping(filePath)).stream().forEach(System.out::println);
 		
 		Reducer Rc = new Reducer();
 		System.out.println("\nRudecer Output");
-		Rc.reducing(ss.shufflingSorting(myMappaerList.mapping(filePath))).stream().forEach(System.out::println);
+		//Rc.reducing(ss.shufflingSorting(myMappaerList.mapping(filePath))).stream().forEach(System.out::println);
 	}
 }

@@ -5,9 +5,21 @@ import java.util.List;
 
 public class ShuffleSort {
 
-	public List<ReducerInput> shufflingSorting(List<KeyValue> kv) {
+	private List<ReducerInput> reducerInputList = new ArrayList();
 
-		List<ReducerInput> reducerInputList = new ArrayList();
+	private List<KeyValue> kv = new ArrayList();
+
+	public List<ReducerInput> shufflingSorting(List<KeyValue> mapkv) {
+		
+		if (!mapkv.isEmpty()) {
+			kv.addAll(mapkv);
+			suffling();
+			sorting();
+		}
+		return reducerInputList;
+	}
+
+	private void suffling() {
 		int kvlngth = kv.size();
 		List<String> tmpList = new ArrayList();
 		for (int i = 0; i < kvlngth; i++) {
@@ -23,13 +35,12 @@ public class ShuffleSort {
 					}
 				}
 			}
-			if(ri.key != null)
+			if (ri.key != null)
 				reducerInputList.add(ri);
 		}
-		sorting(reducerInputList);
-		return reducerInputList;
 	}
-	private void sorting(List<ReducerInput> reducerInputList) {
+
+	private void sorting() {
 		ReducerInputComparator comp = new ReducerInputComparator();
 		reducerInputList.sort(comp);
 	}
