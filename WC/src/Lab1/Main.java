@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
+		String filePath = "E:/data.txt";
 		Mapper myMappaerList = new Mapper();				
-		myMappaerList.mapping("E:/data.txt").stream().forEach(System.out::println);	
+		myMappaerList.mapping(filePath).stream().forEach(System.out::println);	
 	}
 }

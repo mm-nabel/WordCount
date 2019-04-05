@@ -11,13 +11,19 @@ public class WordCount {
 
 	public static void main(String[] args) throws IOException {
 
-		System.out.println(getMappersCount("E:\\WordCount"));
-		int mapperCount = getMappersCount("E:\\WordCount");
+	
+		int mapperCount = getMappersCount("E:\\WordCount\\Lab3_1");
 		for (int i = 1; i <= mapperCount; i++) {
 			Mapper mp = new Mapper();
-			mp.mapping("E:\\WordCount\\data" + i + ".txt").stream().forEach(System.out::println);
+			System.out.println("Mapper "+ (i-1) +" output");	
+			mp.mapping("E:\\WordCount\\Lab3_1\\data" + i + ".txt").stream().forEach(System.out::println);
 		}
 		
+//		int reducerCount = getMappersCount("E:\\WordCount");
+//		for (int i = 1; i <= mapperCount; i++) {
+//			Mapper mp = new Mapper();
+//			mp.mapping("E:\\WordCount\\data" + i + ".txt").stream().forEach(System.out::println);
+//		}
 		
 	}
 
